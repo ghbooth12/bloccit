@@ -1,0 +1,7 @@
+<h1>All Advertisements</h1>
+
+<div class="list-group">
+  <% @advertisements.each do |ad| %>
+    <%= link_to ad.title, ad, class: "list-group-item" %>
+  <% end %>
+</div>
