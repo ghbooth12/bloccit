@@ -1,0 +1,12 @@
+<h1>All Questions</h1>
+
+<div class="list-group">
+  <% @questions.each do |q| %>
+    <p>
+      <% if !q.resolved %>
+      <span class="label label-warning">unsolved</span>
+      <% end %>
+      <%= link_to q.title, question_path(q), class: "list-group-item" %>
+    </p>
+  <% end %>
+</div>
