@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-      <%= form_for @advertisement do |f| %>
+      <%= form_for @advertisement, :html => {:class => 'form-horizontal'}  do |f| %>
         <div class="form-group">
           <%= f.label :title, class: "col-sm-2 control-label" %>
           <div class="col-sm-10">
