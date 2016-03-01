@@ -24,12 +24,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-
-    if @question.resolved
-      @msg = "The question has resolved."
-    else
-      @msg = "The question has not resolved yet."
-    end
   end
 
   def edit

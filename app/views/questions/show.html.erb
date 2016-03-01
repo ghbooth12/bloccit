@@ -5,7 +5,7 @@
   <div class="panel-body">
     <p><span class="label label-default">Title</span> <%= @question.title %></p>
     <p><span class="label label-default">body</span> <%= @question.body %></p>
-    <p><span class="label label-default">Resolved</span> <%= @msg %></p>
+    <p><span class="label label-default">Resolved</span> <%= message_resolved(@question) %></p>
   </div>
   <div class="panel-footer">
     <%= link_to "Edit", edit_question_path(@question), class: "btn btn-primary"%>
