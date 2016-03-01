@@ -20,9 +20,23 @@
         </div>
       </div>
     <% end %>
-  </div>
+    <hr>
+    <% @topic.sponsored_posts.each do |s| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to s.title, topic_sponsored_post_path(@topic, s) %>
+          </h4>
+          <small>
+            updated <%= time_ago_in_words(s.updated_at) %> ago <br>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div> <!-- /.col-md-8 -->
   <div class="col-md-4">
     <%= link_to "New Post", new_topic_post_path(@topic), class: "btn btn-success" %>
+    <%= link_to "New Sponsored Post", new_topic_sponsored_post_path(@topic), class: "btn btn-primary" %>
     <%= link_to "Delete Topic", topic_path(@topic), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure you want to delete this topic?"} %>
   </div>
-</div>
+</div> <!-- /.row -->
