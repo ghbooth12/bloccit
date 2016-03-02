@@ -5,8 +5,10 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.new
-    @user.name  = params[:user][:name]
-    @user.email = params[:user][:email]
+    @user.name                  = params[:user][:name]
+    @user.email                 = params[:user][:email]
+    @user.password              = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
   end
 
   def create
