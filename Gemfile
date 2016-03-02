@@ -27,8 +27,11 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-#CSS Framework Bootstrap
+# CSS Framework Bootstrap
 gem 'bootstrap-sass'
+# Used for encrypting User passwords
+gem 'bcrypt'
+
 
 # # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails', '4.2.5.1'
