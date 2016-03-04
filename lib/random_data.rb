@@ -21,4 +21,15 @@ module RandomData
     letters.shuffle!
     letters[0, rand(3..8)].join
   end
+
+  def self.random_name
+    first_name = random_words.capitalize
+    last_name  = random_words.capitalize
+
+    "#{first_name} #{last_name}"
+  end
+
+  def self.random_email
+    "#{random_words}@#{random_words}.#{random_words}"
+  end
 end
