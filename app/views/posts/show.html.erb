@@ -14,13 +14,17 @@
 <div class="row">
   <div class="col-md-8">
     <p><%= @post.body %></p>
+    <!-- Comments -->
     <div>
       <h3>Comments</h3>
-      <%= render @post.comments %>
+      <% @post.comments.each do |comment| %>
+        <%= render partial: 'comments/comment', locals: { topic_or_post: @post, comment: comment } %>
+      <% end %>
     </div>
     <% if current_user %>
-      <%= render 'comments/form', comment: Comment.new, post: @post %>
+      <%= render partial: 'comments/form', locals: { topic_or_post: @post, comment: Comment.new } %>
     <% end %>
+    <!-- Comments End -->
   </div>
   <% if user_is_authorized_for_post?(@post) %>
     <div class="col-md-4">
