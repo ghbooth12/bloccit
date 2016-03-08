@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  after_create :create_vote
+
   belongs_to :topic
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -32,5 +34,10 @@ class Post < ActiveRecord::Base
     age_in_days = (created_at - Time.new(1970,1,1)) / 1.day.seconds
     new_rank = points + age_in_days
     update_attribute(:rank, new_rank)
+  end
+
+  private
+  def create_vote
+    votes.create(value: 1, user: self.user)
   end
 end
