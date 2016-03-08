@@ -75,12 +75,15 @@ RSpec.describe Post, type: :model do
     # after_create :create_vote
     describe "#create_vote after post created" do
       it "triggers create_vote after post created" do
-        expect(post).to receive(:create_vote).at_least(:once)
-        post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        my_post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        expect(my_post).to receive(:create_vote).at_least(:once)
+        my_post.save
       end
       it "#create_vote should vote up with post and user who created" do
         expect(post.votes.first.value).to eq(1)
-        post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+      end
+      it "associates the vote with the owner of the post" do
+        expect(post.votes.first.user).to eq(post.user)
       end
     end
   end
