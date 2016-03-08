@@ -12,7 +12,10 @@
       <br />
       <%= @topic.description %>
     </p>
-    <%= render @topic.posts %>
+    <% @topic.posts.each do |post| %>
+      <%= render partial: 'votes/voter', locals: { post: post } %>
+      <%= render partial: 'posts/post', locals: { topic: @topic, post: post } %>
+    <% end %>
   </div>
   <% if current_user %>
     <div class="col-md-4">
