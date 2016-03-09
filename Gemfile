@@ -31,6 +31,8 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 # Used for encrypting User passwords
 gem 'bcrypt'
+# Handling sensitive data with environment variables
+gem 'figaro', '1.0'
 
 
 # # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
