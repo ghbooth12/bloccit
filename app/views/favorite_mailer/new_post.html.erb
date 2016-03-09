@@ -4,13 +4,11 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h4>
-      Hello <%= @user.name.capitalize %>,
-      <small>
-        You have automatically favorited your post and will receive update's when you have a new comment!
-      </small>
-    </h4>
-    <h1>Your new post "<%= @post.title %>"</h1>
+    <h2>Hello <%= @post.user.name.capitalize %>,</h2>
+      <p>
+        You're now following "<%= @post.title %>", you will be notified of all comments. If you don't want to receive further notifications, unfavorite your <%= link_to "post", topic_post_url(@post.topic, @post) %>.
+      </p>
+    <h4>Your new post "<%= @post.title %>"</h4>
     <small>
       submitted <%= time_ago_in_words(@post.created_at) %> ago
     </small>

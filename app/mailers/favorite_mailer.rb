@@ -13,13 +13,13 @@ class FavoriteMailer < ApplicationMailer
     mail(to: user.email, subject: "New comment on #{post.title}")
   end
 
-  def new_post(user, post)
+  def new_post(post)
+    headers["Message-ID"] = "<posts/#{post.id}@evening-fortress-95207.herokuapp.com>"
     headers["In-Reply-To"] = "<post/#{post.id}@evening-fortress-95207.herokuapp.com>"
     headers["References"] = "<post/#{post.id}@evening-fortress-95207.herokuapp.com>"
 
-    @user = user
     @post = post
 
-    mail(to: user.email, subject: "Hello, your new post: #{post.title}")
+    mail(to: post.user.email, subject: "Hello, your new post: #{post.title}")
   end
 end
