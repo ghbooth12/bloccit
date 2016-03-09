@@ -1,0 +1,11 @@
+Hello <%= @user.name.capitalize %>,
+  You have automatically favorited your post and will receive update's when you have a new comment!
+
+Your new post "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+submitted <%= time_ago_in_words(@post.created_at) %> ago
+
+<%= @post.body %>
+
+Visit online at: <%= topic_post_url(@post.topic, @post) %>

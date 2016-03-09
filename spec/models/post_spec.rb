@@ -87,5 +87,17 @@ RSpec.describe Post, type: :model do
         expect(post.votes.first.user).to eq(post.user)
       end
     end
+
+    describe "#create_favorite" do
+      it "calls #create_favorite when a post is created" do
+        post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        expect(post).to receive(:create_favorite)
+        post.save
+      end
+      it "favorites own post automatically" do
+        my_post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        expect(my_post.favorites.find_by(user_id: user.id)).to eq(my_post.favorites[0])
+      end
+    end
   end
 end

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h4>
+      Hello <%= @user.name.capitalize %>,
+      <small>
+        You have automatically favorited your post and will receive update's when you have a new comment!
+      </small>
+    </h4>
+    <h1>Your new post "<%= @post.title %>"</h1>
+    <small>
+      submitted <%= time_ago_in_words(@post.created_at) %> ago
+    </small>
+    <p>
+      <%= @post.body %>
+    </p>
+    <p>
+      <%= link_to "Click here to view your post on site", topic_post_url(@post.topic, @post) %>
+    </p>
+  </body>
+</html>
