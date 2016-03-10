@@ -4,7 +4,7 @@ include RandomData
 RSpec.describe Post, type: :model do
   let(:topic) { create(:topic) }
   let(:user) { create(:user) }
-  let(:post) { create(:post) }
+  let(:post) { create(:post, topic: topic, user: user) }
 
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
@@ -75,11 +75,11 @@ RSpec.describe Post, type: :model do
 
     describe "#create_vote" do
       it "sets the posts up_votes to 1" do
-        post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        post = create(:post)
         expect(post.up_votes).to eq(1)
       end
       it "calls #create_vote when a post is created" do
-        post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        post = build(:post)
         expect(post).to receive(:create_vote)
         post.save
       end
@@ -90,12 +90,12 @@ RSpec.describe Post, type: :model do
 
     describe "#create_favorite" do
       it "calls #create_favorite when a post is created" do
-        post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        post = build(:post)
         expect(post).to receive(:create_favorite)
         post.save
       end
       it "favorites own post automatically" do
-        my_post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        my_post = create(:post, topic: topic, user: user)
         expect(my_post.favorites.find_by(user_id: user.id)).to eq(my_post.favorites[0])
       end
     end

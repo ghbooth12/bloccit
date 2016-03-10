@@ -1,0 +1,17 @@
+<div class="media">
+  <%= render partial: 'votes/voter', locals: { post: post } %>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to post.title, topic_post_path(post.topic, post) %>
+      <%= render partial: 'labels/list', locals: { labels: post.labels } %>
+    </h4>
+    <div class="pull-left gravatar">
+      <% avatar_url = user.avatar_url(30) %>
+      <%= image_tag avatar_url %><b>
+    </div>
+    <small>
+      <%= post.user.name %></b> submitted <%= time_ago_in_words(post.created_at) %> ago<br>
+      <%= pluralize(post.comments.count, 'comment') %>
+    </small>
+  </div>
+</div>

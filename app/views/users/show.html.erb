@@ -19,8 +19,28 @@
   </div>
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<div class="row">
+  <% if has_post_or_comment?(@user) %>
+    <h2>Posts</h2>
+    <%= render @user.posts %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+    <h2>Comments</h2>
+    <%= render @user.comments %>
+  <% else %>
+    <br>
+    <p><%= @user.name %> has not submitted any posts or comments yet.</p>
+  <% end %>
+</div>
+
+<div class="row">
+  <% if has_favorites?(@user) %>
+    <h2>Favorites</h2>
+      <% array = array_of_favorited_posts(@user) %>
+      <% array.each do |post| %>
+        <%= render partial: 'favorites/list', locals: { user: @user, post: post } %>
+      <% end %>
+  <% else %>
+    <br>
+    <p><%= @user.name %> has not favorited any posts yet.</p>
+  <% end %>
+</div>
