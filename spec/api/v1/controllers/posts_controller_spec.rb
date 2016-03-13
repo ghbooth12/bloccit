@@ -11,8 +11,13 @@ RSpec.describe Api::V1::PostsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
     it "GET show returns http success" do
-      get :index, topic_id: my_topic.id
+      get :show, topic_id: my_topic.id, id: my_post.id
       expect(response).to have_http_status(:success)
+    end
+    it "GET show displays an array of child comments" do
+      get :show, topic_id: my_topic.id, id: my_post.id
+      response_hash = JSON.parse(response.body)
+      expect(response_hash["comments"]).not_to be_nil
     end
   end
 
@@ -28,6 +33,11 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     it "GET show returns http success" do
       get :show, topic_id: my_topic.id, id: my_post.id
       expect(response).to have_http_status(:success)
+    end
+    it "GET show displays an array of child comments" do
+      get :show, topic_id: my_topic.id, id: my_post.id
+      response_hash = JSON.parse(response.body)
+      expect(response_hash["comments"]).not_to be_nil
     end
   end
 end

@@ -22,12 +22,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:index, :show]
-      resources :topics, only: [:index, :show] do
-        resources :posts, only: [:index, :show]
-      end
-      resources :posts, only: [] do
-        resources :comments, only: [:index, :show]
-      end
+      resources :topics, only: [:index, :show]
+      resources :posts, only: [:index, :show]
+      resources :comments, only: [:index, :show]
     end
   end
 end
